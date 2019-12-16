@@ -1,5 +1,4 @@
 # more-pages
-<<<<<<< HEAD
 
 ## Project setup
 ```
@@ -23,6 +22,4 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-=======
 This is more-pages.
->>>>>>> 8f590c3df7be7157ecc69ee86bec9831e48aebee
