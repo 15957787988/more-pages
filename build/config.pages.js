@@ -15,7 +15,7 @@ console.log('process.env.PAGES===', process.env.PAGES)
 if (process.env.PAGES) {
   buildPages = process.env.PAGES.split(',')
 }
-
+console.log('buildPages==', buildPages)
 // 获取文件夹名称
 const pageList = fs.readdirSync(pagesDir)
       .filter( item => isDirectory(item, pagesDir))

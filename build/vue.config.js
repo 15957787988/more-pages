@@ -19,23 +19,54 @@ module.exports = {
     }
   },
   
-  configureWebpack: config => { // open gzip
-    if (process.env.NODE_ENV === 'production') {
-      config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
-      return {
-        plugins: [
-          new CompressionWebpackPlugin({
-            filename: '[path].gz[query]', // 目标资源文件名称
-            algorithm: 'gzip',
-            test: new RegExp(
-              '\\.(' + gzipSourceList.join('|') + ')$'
-            ), // 匹配所有对应的文件
-            threshold: 10240, // 多少kb 配置10kb
-            minRatio: 0.8, // 压缩比例
-            deleteOriginalAssets: false // 是否删除原始资源
-          })
-        ]
-      }
+  configureWebpack: config => {
+    return {
+        optimization: {
+            // https://webpack.docschina.org/plugins/split-chunks-plugin/#optimization-splitchunks
+            splitChunks: {
+                cacheGroups: {
+                    // vendors: {
+                    //     name: 'chunk-vendors',
+                    //     test: /[\\\/]node_modules[\\\/]/,
+                    //     priority: -10,
+                    //     chunks: 'initial'
+                    // },
+                    // common: {
+                    //     name: 'chunk-common',
+                    //     minChunks: 3,
+                    //     minSize: 1,
+                    //     priority: -20,
+                    //     chunks: 'initial',
+                    //     reuseExistingChunk: true
+                    // },
+
+                    // 不需要把 node_modules 里的所有内容放入 vendor，有些东西可能只有个别页面使用
+                    vendors: {
+                        name: 'chunk-vendors',
+                        test: /$.^/,            // 所有内容都不要加入 chunk-vendors
+                        priority: -10,
+                        chunks: 'initial'
+                    },
+
+                    // 因为是要各页面独立打包，没有搞自动 common chunk 的必要（计算不准）
+                    common: false,
+                }
+            }
+        },
     }
-  }
+
+    // return new MyAwesomeWebpackPlugin()
+    // vuxLoader.merge(config, {
+    //   // options: {},
+    //   plugins: [{
+    //     // 删除重复样式
+    //     name: 'duplicate-style'
+    //   }, {
+    //     name: 'build-done-callback',
+    //     fn: function () {
+    //       console.log('done!')
+    //     }
+    //   },]
+    // })
+}
 }
