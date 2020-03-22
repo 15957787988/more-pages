@@ -7,6 +7,7 @@ const resolveApp = (dir) => path.resolve(__dirname, '../', dir)
 
 module.exports = {
   publicPath: './',
+  assetsDir: 'static',
   outputDir: resolveApp('./dist'), // build path
   pages, // more pages config
   productionSourceMap: false, // don·t use map

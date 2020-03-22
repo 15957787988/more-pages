@@ -7,7 +7,8 @@
     "deploy": "sh ./build/deploy.sh",
     "build": "sh ./build/build.sh",
     "lint": "vue-cli-service lint",
-    "sh": "sh ./build/text.sh"
+    "sh": "sh ./build/text.sh",
+    "clean": "node ./build/cleanDist.js"
   },
   "dependencies": {
     "core-js": "^3.4.3",

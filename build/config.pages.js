@@ -11,17 +11,15 @@ const isDirectory = (item, dir) => fs.lstatSync(path.join(dir, item)).isDirector
 // 每次必定打包index
 let buildPages = null
 // console.log('process.env===', process.env)
-console.log('process.env.PAGES===', process.env.PAGES)
 if (process.env.PAGES) {
   buildPages = process.env.PAGES.split(',')
 }
-console.log('buildPages==', buildPages)
 // 获取文件夹名称
 const pageList = fs.readdirSync(pagesDir)
       .filter( item => isDirectory(item, pagesDir))
       .filter( item => !buildPages || buildPages.indexOf(item) !== -1)
-console.log('pageList==', pageList)
 const pageTitles = {}
+
 pageList.map( page => {
   let title = page
   const readmePath = path.join(pagesDir, page, 'README.md')

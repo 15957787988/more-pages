@@ -12,6 +12,8 @@ base=$( cd "$(dirname "$0")" ; pwd -P )/../
 
 pages=("$@")
 
+# node $base/build/cleanDist.js
+
 if [ ${#pages[@]} -eq 0 ]; then
     echo "${RED}请指定页面。如：npm run build meal-config\n"
     exit 1
@@ -55,6 +57,6 @@ else
     rm -rf $base/dist
     mv $base/dist-prev $base/dist
 
-    # node $base/build/cleanDist.js
+    node $base/build/cleanDist.js
   fi
 fi
