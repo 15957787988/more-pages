@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App 111"/>
+    <HelloWorld msg="Welcome to Your Vue.js App 11"/>
   </div>
 </template>
 

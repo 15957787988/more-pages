@@ -12,8 +12,8 @@ module.exports = {
   pages, // more pages config
   productionSourceMap: false, // don·t use map
   devServer: {
-    port: 1314, // port
-    open: false, // default browser
+    port: 8081, // port
+    open: true, // default browser
     overlay: {
       warnings: true, // eslint show warnings
       errors: true // eslint show errors

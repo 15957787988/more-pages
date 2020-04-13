@@ -57,6 +57,6 @@ else
     rm -rf $base/dist
     mv $base/dist-prev $base/dist
 
-    node $base/build/cleanDist.js
+    # node $base/build/cleanDist.js
   fi
 fi
