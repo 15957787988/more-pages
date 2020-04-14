@@ -30,6 +30,9 @@ export default {
   props: {
     msg: String
   },
+  mounted() {
+    console.log('sss')
+  },
   methods: {
   },
 }
