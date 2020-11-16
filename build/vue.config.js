@@ -5,6 +5,9 @@ const gzipSourceList = ['css', 'js']
 let pages = require('./config.pages.js')
 const resolveApp = (dir) => path.resolve(__dirname, '../', dir)
 
+const isProd = process.env.NODE_ENV === 'production'
+const isDev = process.env.NODE_ENV === 'development'
+
 module.exports = {
   publicPath: './',
   assetsDir: 'static',
@@ -22,6 +25,14 @@ module.exports = {
   
   configureWebpack: config => {
     return {
+        // output: {
+        //     pathinfo: isDev,
+        // },
+        externals: {
+            // 本地开发引入 node_modules 里的 Vue
+            // 生产环境在 HTML 里通过 CDN 引入 Vue
+            vue: isProd ? 'Vue' : false,
+        },
         optimization: {
             // https://webpack.docschina.org/plugins/split-chunks-plugin/#optimization-splitchunks
             splitChunks: {
@@ -54,6 +65,12 @@ module.exports = {
                 }
             }
         },
+        resolve: {
+            alias: {
+                // 代码里可以使用 '@/' 引用项目根目录，避免出现 '../../../lib' 这样的代码
+                '@': 'src',
+            }
+        }
     }
 
     // return new MyAwesomeWebpackPlugin()

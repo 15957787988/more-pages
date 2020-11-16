@@ -6,7 +6,7 @@
     "dev": "sh ./build/dev.sh",
     "deploy": "sh ./build/deploy.sh",
     "build": "sh ./build/build.sh",
-    "lint": "vue-cli-service lint",
+    "lint": "eslint --ext .js,.vue src --fix ",
     "sh": "sh ./build/text.sh",
     "clean": "node ./build/cleanDist.js"
   },
@@ -22,6 +22,8 @@
     "compression-webpack-plugin": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "husky": "^4.3.0",
+    "vconsole": "^3.3.4",
     "vue-template-compiler": "^2.6.10",
     "webpack-bundle-analyzer": "^3.6.0"
   },
@@ -37,6 +39,11 @@
     "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
     }
   },
   "browserslist": [

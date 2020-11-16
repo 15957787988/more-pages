@@ -31,10 +31,9 @@ export default {
     msg: String
   },
   mounted() {
-    console.log('sss')
   },
   methods: {
-  },
+  }
 }
 </script>
 
