@@ -24,13 +24,13 @@ function cleanDist() {
   const usedFiles = getUsedFiles()
   const notUsedFiles = getNotUsedFiles(path.join(distDir, 'static'), usedFiles)
 
-  // if (notUsedFiles.length) {
-  //   console.log(`[cleanDist] 发现 ${notUsedFiles.length} 个未被使用的文件，开始清理...`)
-  //   notUsedFiles.forEach(filepath => {
-  //     console.log('  ' + filepath.replace(distDir, ''))
-  //     fs.unlinkSync(filepath)
-  //   })
-  // }
+  if (notUsedFiles.length) {
+    console.log(`[cleanDist] 发现 ${notUsedFiles.length} 个未被使用的文件，开始清理...`)
+    notUsedFiles.forEach(filepath => {
+      console.log('  ' + filepath.replace(distDir, ''))
+      fs.unlinkSync(filepath)
+    })
+  }
 }
 
 /**
@@ -38,7 +38,6 @@ function cleanDist() {
  */
 function getNotUsedFiles(dir, usedFiles) {
   let files = []
-  
   fs.readdirSync(dir).forEach(filepath => {
     const abspath = path.join(dir, filepath)
     if (fs.lstatSync(abspath).isDirectory()) {
@@ -63,7 +62,6 @@ function getUsedFiles() {
     .map(f => path.join(distDir, f))
     .forEach(htmlPath => {
       const filesInHtml = getUsedFilesInHtml(htmlPath)
-      console.log('filesInHtml===', filesInHtml)
       files = new Set([...files, ...filesInHtml])
     })
 
@@ -92,7 +90,6 @@ function getUsedFiles() {
 function getUsedFilesInHtml(htmlPath) {
   const content = fs.readFileSync(htmlPath).toString()
   const matches = matchAll(/(?<=\=)(static\/.+?)(?= |>)/g, content)
-  console.log('matches===', matches)
   return matches
     .map(m => m[0])
     .map(f => path.join(distDir, f))
