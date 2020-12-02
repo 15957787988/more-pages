@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    {{a}}
     <button @click="location">地址</button>
     <button @click="chooseImage">图片</button>
     <HelloWorld msg="Welcome to Your Vue.js App 11"/>
@@ -14,13 +15,20 @@ export default {
   name: 'app',
   data() {
     return {
-      sdk:null
+      sdk:null,
+      a: 'sss'
     }
   },
   components: {
     HelloWorld
   },
+  watch: {
+    a(oldVal, newVal) {
+      console.log('oldVal, newVal==', oldVal, newVal)
+    }
+  },
   mounted() {
+    this.a = 'sss1'
   },
   methods:{
     location() {

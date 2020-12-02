@@ -8,7 +8,7 @@ module.exports = {
     'eslint:recommended'
   ],
   rules: {
-    'no-console': 'error',
+    'no-console': 0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-BMAP_STATUS_SUCCESS':'off',
     'keyword-spacing': 2,
